@@ -1,38 +1,46 @@
 const Crypt_module = (() => {
-    const alfabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    const alfabet = [...'abcdefghijklmnopqrstuvwxyz'];
 
     const crypt = {
-        getCrypt(data, shift) {
-            const arrayData = data.split('');
+        getCrypt: ([...data], shift) =>
+        (data.reduce((acc, item) => {
+            const indexLetter = alfabet.findIndex(letter => letter === item);
+            const shiftIndexLetter = indexLetter + shift;
 
-            const rezult = arrayData.reduce((acc, item) => {
-                let indexLetter = (alfabet.findIndex((letter) => letter === item));
+            if (indexLetter !== -1)
+                switch (true) {
+                    case shiftIndexLetter >= alfabet.length: acc += alfabet[shiftIndexLetter - alfabet.length];
+                        break;
+                    case shiftIndexLetter < 0: acc += alfabet[shiftIndexLetter + alfabet.length];
+                        break;
+                    default: acc += alfabet[shiftIndexLetter]
+                }
+            else
+                acc += item;
 
-                indexLetterS = shift > 0 ? indexLetter : indexLetter + alfabet.length
+            return acc;
+        }, '')),
+        getDecrypt: ([...data], shift) =>
+        (data.reduce((acc, item) => {
+            const indexLetter = alfabet.findIndex(letter => letter === item);
+            const shiftIndexLetter = indexLetter - shift;
 
-                acc += alfabet[indexLetterS + shift];
+            if (indexLetter !== -1)
+                switch (true) {
+                    case shiftIndexLetter >= alfabet.length: acc += alfabet[shiftIndexLetter - alfabet.length];
+                        break;
+                    case shiftIndexLetter < 0: acc += alfabet[shiftIndexLetter + alfabet.length];
+                        break;
+                    default: acc += alfabet[shiftIndexLetter]
+                }
+            else
+                acc += item;
 
-                return acc;
-            }, '')
-
-            return rezult;
-        },
-        getDecrypt(data, shift) {
-            const arrayData = data.split('');
-
-            const rezult = arrayData.reduce((acc, item) => {
-                let indexLetter = alfabet.findIndex((letter) => letter === item);
-
-                indexLetterS = shift > 0 ? indexLetter : indexLetter - alfabet.length
-
-                acc += alfabet[indexLetterS - shift];
-
-                return acc;
-            }, '')
-
-            return rezult;
-        },
+            return acc;
+        }, '')),
     }
 
     return crypt;
 })();
+
+module.exports = Crypt_module;
