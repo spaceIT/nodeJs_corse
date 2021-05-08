@@ -4,10 +4,10 @@ const Crypt_module = (() => {
     const crypt = {
         getCrypt: ([...data], shift) =>
         (data.reduce((acc, item) => {
-            const indexLetter = alfabet.findIndex(letter => letter === item);
+            const isLetter = alfabet.findIndex(letter => letter === item) !== -1;
             const shiftIndexLetter = indexLetter + shift;
 
-            if (indexLetter !== -1)
+            if (isLetter)
                 switch (true) {
                     case shiftIndexLetter >= alfabet.length: acc += alfabet[shiftIndexLetter - alfabet.length];
                         break;
@@ -22,10 +22,10 @@ const Crypt_module = (() => {
         }, '')),
         getDecrypt: ([...data], shift) =>
         (data.reduce((acc, item) => {
-            const indexLetter = alfabet.findIndex(letter => letter === item);
+            const isLetter = alfabet.findIndex(letter => letter === item) !== -1;
             const shiftIndexLetter = indexLetter - shift;
 
-            if (indexLetter !== -1)
+            if (isLetter)
                 switch (true) {
                     case shiftIndexLetter >= alfabet.length: acc += alfabet[shiftIndexLetter - alfabet.length];
                         break;
