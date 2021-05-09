@@ -1,11 +1,4 @@
 # nodeJs_corse
-Before start tool you need to go in prodject folder:
-
-`cd caesar-cipher-cli` 
-
-Then you need to instal dependencies:
-
-`npm install`
 
 ### CLI tool should accept 4 options (short alias and full name):
 
