@@ -26,11 +26,11 @@ const getTransformStream = (shift, actionValue) =>
     new Transform({
         transform(chunk) {
             switch (actionValue) {
-                case 'crypt': this.push(Crypt_module.getCrypt(chunk, shift));
+                case 'encode': this.push(Crypt_module.getCrypt(chunk, shift));
                     break;
-                case 'decrypt': this.push(Crypt_module.getDecrypt(chunk, shift));
+                case 'decode': this.push(Crypt_module.getDecrypt(chunk, shift));
                     break;
-                default: console.log(`(${actionValue}) no such module exist`)
+                default: process.stderr.write(`(${actionValue}) is invalid action`)
             }
         }
     });
