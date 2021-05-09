@@ -1,12 +1,10 @@
 const { pipeline } = require('stream');
-const { Command } = require('commander');
-const program = new Command();
+const { program } = require('commander');
 
-const { StreamsModules } = require('./StreamsModules');
+const StreamsModules = require('./StreamsModules');
 
 program
-    .storeOptionsAsProperties(false)
-    .passCommandToAction(false);
+    .storeOptionsAsProperties(false);
 
 program
     .option('-a, --action <value>', 'action')

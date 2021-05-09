@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const Transform = require('stream').Transform;
 const Crypt_module = require('./CryptsModules');
 
 const getReadableStream = (inputValue) => {
@@ -41,9 +41,7 @@ const getWritableStream = (outputValue) => {
 
     const path = __dirname + `/${outputValue}`;
 
-    return fs.createWriteStream(path, {
-        flags: 'a',
-    });
+    return fs.createWriteStream(path);
 }
 
 module.exports = { getReadableStream, getTransformStream, getWritableStream };
