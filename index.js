@@ -7,8 +7,8 @@ program
     .storeOptionsAsProperties(false);
 
 program
-    .option('-a, --action <value>', 'action')
-    .option('-s, --shift <number>', 'shift')
+    .requiredOption('-a, --action <value>', 'action')
+    .requiredOption('-s, --shift <number>', 'shift')
     .option('-i, --input <value>', 'input file')
     .option('-o, --output <path>', 'output file');
 
