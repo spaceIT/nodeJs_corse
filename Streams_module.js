@@ -16,3 +16,19 @@ const getReadableStream = (inputValue) => {
 
     return readStream;
 }
+
+const getTransformStream = (shift, actionValue) =>
+    new Transform({
+        transform(chunk) {
+            switch (actionValue) {
+                case 'crypt': this.push(Crypt_module.getCrypt(chunk, shift));
+                    break;
+                case 'decrypt': this.push(Crypt_module.getDecrypt(chunk, shift));
+                    break;
+                default: console.log(`(${actionValue}) no such module exists`)
+            }
+        }
+    });
+
+module.exports = { getReadableStream, getTransformStream };
+
