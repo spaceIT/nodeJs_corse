@@ -47,4 +47,3 @@ const getWritableStream = (outputValue) => {
 }
 
 module.exports = { getReadableStream, getTransformStream, getWritableStream };
-
