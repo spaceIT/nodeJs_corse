@@ -30,7 +30,7 @@ const getTransformStream = (shift, actionValue) =>
                     break;
                 case 'decrypt': this.push(Crypt_module.getDecrypt(chunk, shift));
                     break;
-                default: console.log(`(${actionValue}) no such module exists`)
+                default: console.log(`(${actionValue}) no such module exist`)
             }
         }
     });
