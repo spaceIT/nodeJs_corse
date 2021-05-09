@@ -14,6 +14,11 @@ const getReadableStream = (inputValue) => {
     const urlPath = `./${inputValue}`;
     const readStream = fs.createReadStream(urlPath, 'utf8');
 
+    readStream.on('error', () => {
+        process.stderr.write('Input file does not exist');
+        process.exit(1);
+    });
+
     return readStream;
 }
 
