@@ -30,5 +30,16 @@ const getTransformStream = (shift, actionValue) =>
         }
     });
 
-module.exports = { getReadableStream, getTransformStream };
+const getWritableStream = (outputValue) => {
+    if (outputValue === undefined)
+        return process.stdout;
+
+    const path = __dirname + `/${outputValue}`;
+
+    return fs.createWriteStream(path, {
+        flags: 'a',
+    });
+}
+
+module.exports = { getReadableStream, getTransformStream, getWritableStream };
 
