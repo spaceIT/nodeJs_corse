@@ -25,7 +25,7 @@ const outputValue = program.opts().output;
 pipeline(
     StreamsModules.getReadableStream(inputValue),
     StreamsModules.getTransformStream(shift, actionValue),
-    streamFunc.getWritableStream(outputValue),
+    StreamsModules.getWritableStream(outputValue),
     (err) => {
         if (err)
             console.error(`Pipeline is failed`, err);
